@@ -14,9 +14,9 @@ module.exports = {
 
     async create(req, res) {
         try {
-            const { nome, email, cpf } = req.body;
-            const [id] = await knex('pessoa').insert({ nome, email, cpf }).returning('id');
-            res.status(201).json({ id, nome, email, cpf });
+            const pessoa = req.body;
+            const pessoaCadastrada = await PessoaService.create(pessoa);
+            res.status(201).json(pessoaCadastrada);
         } catch (err) {
             console.error(err);
             res.status(500).send('Erro ao cadastrar a pessoa');

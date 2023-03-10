@@ -2,12 +2,12 @@ const knex = require('../../database');
 
 module.exports = {
     async create(pessoa) {
-        const [id] = await knex('pessoas').insert(pessoa).returning('id');
-        return id;
+        const pessoaCadastrada = await knex('pessoa').insert(pessoa).returning(['id', 'nome']);
+        return pessoaCadastrada;
     },
 
     async findById(id) {
-        const pessoa = await knex('pessoas').where({ id }).first();
+        const pessoa = await knex('pessoa').where({ id }).first();
         return pessoa;
     },
 
@@ -17,12 +17,12 @@ module.exports = {
     },
 
     async update(id, pessoa) {
-        const rowsUpdated = await knex('pessoas').where({ id }).update(pessoa);
+        const rowsUpdated = await knex('pessoa').where({ id }).update(pessoa);
         return rowsUpdated;
     },
 
     async delete(id) {
-        const rowsDeleted = await knex('pessoas').where({ id }).del();
+        const rowsDeleted = await knex('pessoa').where({ id }).del();
         return rowsDeleted;
     }
 }

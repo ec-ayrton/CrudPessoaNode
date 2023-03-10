@@ -6,7 +6,7 @@ module.exports = {
         return await PessoaRepository.findAll();
     },
     async create(pessoa) {
-        return await this.pessoaRepository.create(pessoa);
+        return await PessoaRepository.create(pessoa);
     }
 
 }
