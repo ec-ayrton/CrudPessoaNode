@@ -1,9 +1,10 @@
 const knex = require('../../database');
+const PessoaService = require('../services/pessoaService')
 
 module.exports = {
     async list(req, res) {
         try {
-            const pessoas = await knex('pessoa').select();
+            const pessoas = await PessoaService.findAll()
             res.json(pessoas);
         } catch (err) {
             console.error(err);
