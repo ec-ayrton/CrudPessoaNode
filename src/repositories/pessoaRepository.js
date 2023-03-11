@@ -1,27 +1,27 @@
-const knex = require('../../database');
+const knex = require('../database');
 
 module.exports = {
-    async create(pessoa) {
-        const pessoaCadastrada = await knex('pessoa').insert(pessoa).returning(['id', 'nome']);
-        return pessoaCadastrada;
+    async salvar(pessoa) {
+        const personFromDb = await knex('pessoa').insert(pessoa).returning(['id', 'nome']);
+        return personFromDb;
     },
 
-    async findById(id) {
+    async buscarPorId(id) {
         const pessoa = await knex('pessoa').where({ id }).first();
         return pessoa;
     },
 
-    async findAll() {
+    async buscarTodasPessoas() {
         const pessoas = await knex('pessoa').select('*');
         return pessoas;
     },
 
-    async update(id, pessoa) {
+    async atualizarPessoa(id, pessoa) {
         const rowsUpdated = await knex('pessoa').where({ id }).update(pessoa);
         return rowsUpdated;
     },
 
-    async delete(id) {
+    async remover(id) {
         const rowsDeleted = await knex('pessoa').where({ id }).del();
         return rowsDeleted;
     }

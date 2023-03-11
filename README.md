@@ -18,3 +18,8 @@ Aprendendo o básico de Node com Express
 > O Retorno é o id e o nome da pessoa cadastrada.
 > - Todos os três campos são obrigatórios.
 > - CPF é campo único.
+
+ ###  Instruções sobre o projeto
+- _npm install_  para instalar as dependencias.
+- _npx knex migrate:latest_ para executar as migrations.
+- _node index.js_ para o server subir.

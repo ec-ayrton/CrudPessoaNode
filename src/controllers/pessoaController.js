@@ -1,10 +1,9 @@
-const knex = require('../../database');
 const PessoaService = require('../services/pessoaService')
 
 module.exports = {
-    async list(req, res) {
+    async listarTodasPessoas(req, res) {
         try {
-            const pessoas = await PessoaService.findAll()
+            const pessoas = await PessoaService.buscarTodasPessoas()
             res.json(pessoas);
         } catch (err) {
             console.error(err);
@@ -12,10 +11,10 @@ module.exports = {
         }
     },
 
-    async create(req, res) {
+    async cadastrar(req, res) {
         try {
             const pessoa = req.body;
-            const pessoaCadastrada = await PessoaService.create(pessoa);
+            const pessoaCadastrada = await PessoaService.salvar(pessoa);
             res.status(201).json(pessoaCadastrada);
         } catch (err) {
             console.error(err);

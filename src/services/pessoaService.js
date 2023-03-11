@@ -2,11 +2,11 @@ const PessoaRepository = require('../repositories/pessoaRepository');
 
 module.exports = {
 
-    async findAll() {
-        return await PessoaRepository.findAll();
+    async buscarTodasPessoas() {
+        return  PessoaRepository.buscarTodasPessoas();
     },
-    async create(pessoa) {
-        return await PessoaRepository.create(pessoa);
+    async salvar(pessoa) {
+        return  PessoaRepository.salvar(pessoa);
     }
 
 }
