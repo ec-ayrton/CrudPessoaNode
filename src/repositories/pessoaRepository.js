@@ -2,8 +2,8 @@ const knex = require('../database');
 
 module.exports = {
     async salvar(pessoa) {
-        const personFromDb = await knex('pessoa').insert(pessoa).returning(['id', 'nome']);
-        return personFromDb;
+        const pessoaCadastrada = await knex('pessoa').insert(pessoa).returning(['id', 'nome']);
+        return pessoaCadastrada;
     },
 
     async buscarPorId(id) {
