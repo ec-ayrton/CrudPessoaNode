@@ -21,5 +21,6 @@ Aprendendo o básico de Node com Express
 
  ###  Instruções sobre o projeto
 - _npm install_  para instalar as dependencias.
+- docker-compose up para iniciar o docker com banco de dados
 - _npx knex migrate:latest_ para executar as migrations.
-- _node index.js_ para o server subir.
+- _node index.js_ para o server da aplicação subir.
