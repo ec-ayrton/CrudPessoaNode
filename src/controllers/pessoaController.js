@@ -7,7 +7,7 @@ module.exports = {
             res.json(pessoas);
         } catch (err) {
             console.error(err);
-            res.status(500).send('Erro ao buscar as pessoas');
+            res.status(500).send(err.message);
         }
     },
 
@@ -18,7 +18,7 @@ module.exports = {
             res.status(201).json(pessoaCadastrada);
         } catch (err) {
             console.error(err);
-            res.status(500).send('Erro ao cadastrar a pessoa');
+            res.status(500).send(err.message);
         }
     },
 };

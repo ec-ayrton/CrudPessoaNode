@@ -2,8 +2,19 @@ const knex = require('../database');
 
 module.exports = {
     async salvar(pessoa) {
-        const pessoaCadastrada = await knex('pessoa').insert(pessoa).returning(['id', 'nome']);
-        return pessoaCadastrada;
+        try {
+            await knex('pessoa').insert(pessoa);
+
+            const [pessoaCadastrada] = await knex('pessoa').select('nome','email').where('cpf', '=', pessoa.cpf);
+
+            return pessoaCadastrada ;
+        } catch (err) {
+            if (err.code === 'ER_DUP_ENTRY') {
+                throw new Error('Já existe uma pessoa com esse CPF cadastrada no sistema.');
+            } else {
+                throw err;
+            }
+        }
     },
 
     async buscarPorId(id) {
