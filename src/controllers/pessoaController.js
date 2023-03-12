@@ -21,4 +21,25 @@ module.exports = {
             res.status(500).send(err.message);
         }
     },
+    async removerPessoa(req, res) {
+        try {
+            const pessoaId = req.params.id;
+            await PessoaService.remover(pessoaId);
+            res.sendStatus(204);
+        } catch (err) {
+            console.error(err);
+            res.status(500).send(err.message);
+        }
+    },
+    async editarPessoa (req, res) {
+        try {
+            const id = req.params.id;
+            const pessoa = req.body;
+            const pessoaAtualizada = await PessoaService.editar(id, pessoa);
+            res.json(pessoaAtualizada);
+        } catch (err) {
+            console.error(err);
+            res.status(500).send(err.message);
+        }
+    }
 };
