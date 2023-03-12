@@ -1,16 +1,15 @@
 module.exports = {
     development: {
-        client: 'pg',
+        client: 'mysql',
         connection: {
-            host: 'localhost',
-            port: '5432',
-            database: 'NodePessoa',
-            user: 'postgres',
-            password: '123'
+            host: '127.0.0.1',
+            user: 'root',
+            password: 'ayrtondocker',
+            database: 'NodePessoa'
         },
         migrations: {
             tableName: 'knex_migrations',
-            directory: './migrations',
-        },
-    },
+            directory: './migrations'
+        }
+    }
 };

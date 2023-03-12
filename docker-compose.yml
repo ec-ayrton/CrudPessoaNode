@@ -1,0 +1,14 @@
+version: '3.1'
+services:
+  db:
+    image: mysql:8.0.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ayrtondocker
+      MYSQL_DATABASE: NodePessoa
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+volumes:
+  db_data:
