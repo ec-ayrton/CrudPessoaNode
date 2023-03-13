@@ -1,13 +1,12 @@
 const PessoaService = require('../services/pessoaService')
-const ErrorHanlder = require('../errorHandler')
+const ErrorHandler = require('../errorHandler')
 module.exports = {
     async listarTodasPessoas(req, res) {
         try {
             const pessoas = await PessoaService.buscarTodasPessoas()
             res.json(pessoas);
         } catch (err) {
-            console.error(err);
-            res.status(500).send(err.message);
+            ErrorHandler.TrataRetornoErro(err,res);
         }
     },
 
@@ -17,7 +16,7 @@ module.exports = {
             const pessoaCadastrada = await PessoaService.salvar(pessoa);
             res.status(201).json(pessoaCadastrada);
         } catch (err) {
-            ErrorHanlder.TrataRetornoErro(err,res);
+            ErrorHandler.TrataRetornoErro(err,res);
         }
     },
     async removerPessoa(req, res) {
@@ -26,7 +25,7 @@ module.exports = {
             await PessoaService.remover(pessoaId);
             res.sendStatus(204);
         } catch (err) {
-            ErrorHanlder.TrataRetornoErro(err,res);
+            ErrorHandler.TrataRetornoErro(err,res);
         }
     },
     async editarPessoa (req, res) {
@@ -36,8 +35,7 @@ module.exports = {
             const pessoaAtualizada = await PessoaService.editar(id, pessoa);
             res.json(pessoaAtualizada);
         } catch (err) {
-            console.error(err);
-            res.status(500).send(err.message);
+            ErrorHandler.TrataRetornoErro(err,res);
         }
     }
 };

@@ -18,7 +18,7 @@ module.exports = {
         }
 
         if (mensagem.length > 0) {
-            const erro = {codigo: 'erros_validacao', mensagem};
+            const erro = {motivo: 'Erro na validacao', mensagem};
             throw  new Error(JSON.stringify(erro))
         }
     }

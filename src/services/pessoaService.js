@@ -12,7 +12,7 @@ module.exports = {
     async remover(pessoaId){
         const quantidadePessoasRemovidas =  await PessoaRepository.remover(pessoaId);
         if(quantidadePessoasRemovidas === 0){
-            const error = {codigo:'Recurso não encontrado.',mensagem:'Não foi encontrada uma pessoa com esse ID.'}
+            const error = {motivo:'Recurso não encontrado.',mensagem:'Não foi encontrada uma pessoa com esse ID.'}
             throw new Error(JSON.stringify(error))
         }
     },
