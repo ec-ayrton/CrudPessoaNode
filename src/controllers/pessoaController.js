@@ -1,5 +1,5 @@
 const PessoaService = require('../services/pessoaService')
-
+const ErrorHanlder = require('../errorHandler')
 module.exports = {
     async listarTodasPessoas(req, res) {
         try {
@@ -17,8 +17,7 @@ module.exports = {
             const pessoaCadastrada = await PessoaService.salvar(pessoa);
             res.status(201).json(pessoaCadastrada);
         } catch (err) {
-            console.error(err);
-            res.status(500).send(err.message);
+            ErrorHanlder.TrataRetornoErro(err,res);
         }
     },
     async removerPessoa(req, res) {
@@ -27,8 +26,7 @@ module.exports = {
             await PessoaService.remover(pessoaId);
             res.sendStatus(204);
         } catch (err) {
-            console.error(err);
-            res.status(500).send(err.message);
+            ErrorHanlder.TrataRetornoErro(err,res);
         }
     },
     async editarPessoa (req, res) {

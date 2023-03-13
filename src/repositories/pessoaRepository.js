@@ -8,7 +8,8 @@ module.exports = {
             return pessoaCadastrada ;
         } catch (err) {
             if (err.code === 'ER_DUP_ENTRY') {
-                throw new Error('Já existe uma pessoa com esse CPF cadastrada no sistema.');
+                const erro = {codigo:'chave duplicada',mensagem:'Já existe uma pessoa com esse CPF cadastrada no sistema.'}
+                throw  new Error(JSON.stringify(erro))
             } else {
                 throw err;
             }

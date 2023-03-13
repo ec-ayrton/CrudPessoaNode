@@ -1,40 +1,24 @@
 module.exports = {
     async validarCampos(pessoa) {
-        const erros = [];
-
+        let mensagem = '';
         if (!pessoa.nome || pessoa.nome.trim().length === 0) {
-            erros.push({
-                codigo: 'campo_vazio',
-                mensagem: 'O campo nome é obrigatório.',
-            });
+            mensagem = mensagem.concat('O campo nome é obrigatório.\n')
         }
 
         if (!pessoa.email || pessoa.email.trim().length === 0) {
-            erros.push({
-                codigo: 'campo_vazio',
-                mensagem: 'O campo email é obrigatório.',
-            });
+            mensagem = mensagem.concat('O campo email é obrigatório.\n')
         } else if (!/\S+@\S+\.\S+/.test(pessoa.email)) {
-            erros.push({
-                codigo: 'formato_invalido',
-                mensagem: 'O formato do email é inválido.',
-            });
+            mensagem = mensagem.concat('O formato do email é inválido.\n')
         }
 
         if (!pessoa.cpf || pessoa.cpf.trim().length === 0) {
-            erros.push({
-                codigo: 'campo_vazio',
-                mensagem: 'O campo cpf é obrigatório.',
-            });
+            mensagem = mensagem.concat('O campo cpf é obrigatório.\n')
         } else if (pessoa.cpf.trim().length !== 11) {
-            erros.push({
-                codigo: 'comprimento_invalido',
-                mensagem: 'O campo cpf deve ter 11 caracteres.',
-            });
+            mensagem = mensagem.concat('O campo cpf deve ter 11 caracteres.\n')
         }
 
-        if (erros.length > 0) {
-            const erro = {codigo: 'erros_validacao', erros};
+        if (mensagem.length > 0) {
+            const erro = {codigo: 'erros_validacao', mensagem};
             throw  new Error(JSON.stringify(erro))
         }
     }

@@ -8,12 +8,13 @@ module.exports = {
     async salvar(pessoa) {
         await PessoaValidador.validarCampos(pessoa);
         return PessoaRepository.salvar(pessoa);
-
     },
     async remover(pessoaId){
-        const quantidadePessoasRemovidas =   PessoaRepository.remover(pessoaId);
-        if(quantidadePessoasRemovidas === 0)
-            throw new Error("Recurso não encontrado.")
+        const quantidadePessoasRemovidas =  await PessoaRepository.remover(pessoaId);
+        if(quantidadePessoasRemovidas === 0){
+            const error = {codigo:'Recurso não encontrado.',mensagem:'Não foi encontrada uma pessoa com esse ID.'}
+            throw new Error(JSON.stringify(error))
+        }
     },
     async editar(id, pessoa) {
         await PessoaValidador.validarCampos(pessoa);
