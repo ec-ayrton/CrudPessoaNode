@@ -9,3 +9,9 @@ A
 app.js,4/a/4a68969ef8e858229267b842dedf42ab5dde4d50
 D
 src/routes/routes.js,c/6/c60e7a6af8aeac005d5053396b46acbf2fe4313a
+Q
+!src/validators/PessoaValidator.js,c/4/c466e53b319fe460f1bbf58d703c2721c901810d
+F
+test/validador.test.js,6/d/6dbdb3e0039b6fb44cd41ecd9d6bac2dea81abe0
+C
+src/errorHandler.js,1/0/10c792494db520625ef63e6da0ca039aae8b44df
