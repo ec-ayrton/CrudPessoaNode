@@ -1,20 +1,20 @@
+const erroMap = {
+    'Erro na validacao': { status: 422, mensagem: 'Erro na validação' },
+    'chave duplicada': { status: 409, mensagem: 'Chave duplicada' },
+    'Recurso não encontrado.': { status: 404, mensagem: 'Recurso não encontrado' },
+};
 
 module.exports = {
 
     TrataRetornoErro(err,res ){
-        const erro = JSON.parse(err.message);
-        if(erro.motivo === 'Erro na validacao') {
-            console.error(err.message)
-            res.status(422).send(erro)
-        }else if(erro.motivo ==='chave duplicada'){
-            console.error(err.message)
-            res.status(409).send(erro)
-        }else if(erro.motivo ==='Recurso não encontrado.'){
-            console.error(err.message)
-            res.status(404).send(erro)
-        }else{
+        if(err.message){
+            const erro = JSON.parse(err.message);
+            const error = erroMap[erro.motivo];
+            console.log(error.mensagem)
+            res.status(error.status).send(error.mensagem);
+        } else{
             console.error(err.message);
-            res.status(500).send(erro.mensagem);
+            res.status(500).send(err.message);
         }
     }
 };
