@@ -5,22 +5,16 @@ Aprendendo o básico de Node com Express
 - Express
 - Node v16
 - Npm 8.3
-- Postgres 12
+- MySQL 8.0
+- Docker
 - body-parser
 - Router
+- Swagger
 
-### Endpoints
-#### Pessoa
-- GET - localhost:3000/pessoas
-> Retorna todas as pessoas cadastradas. Atributos exibidos são: Id, Nome, Cpf e Email.
-- POST - localhost:3000/pessoas
-> Cadastra uma pessoa no banco de dados. Deve ser informado apenas os campos : Nome, cpf e Email.<br />
-> O Retorno é o id e o nome da pessoa cadastrada.
-> - Todos os três campos são obrigatórios.
-> - CPF é campo único.
+### Documentação
+> Poderá ter acesso aos endpoints e documentação da api no link:
+> <localhost:3000/api-docs/>
 
  ###  Instruções sobre o projeto
-- _npm install_  para instalar as dependencias.
-- docker-compose up para iniciar o docker com banco de dados
-- _npx knex migrate:latest_ para executar as migrations.
-- _node index.js_ para o server da aplicação subir.
+- docker-compose build
+- docker-compose up

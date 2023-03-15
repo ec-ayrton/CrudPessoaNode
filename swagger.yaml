@@ -1,0 +1,95 @@
+openapi: 3.0.0
+info:
+  title: API de Pessoas
+  description: API para gerenciamento de pessoas
+  version: 1.0.0
+paths:
+  /pessoas:
+    get:
+      summary: Retorna uma lista de pessoas
+      tags: [Pessoa]
+      responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Pessoa'
+    post:
+      summary: Cadastra uma nova pessoa
+      tags: [Pessoa]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pessoa'
+      responses:
+          '201':
+            description: Created
+  /pessoas/{id}:
+    get:
+      summary: Retorna uma pessoa pelo ID
+      tags: [Pessoa]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pessoa'
+    put:
+      summary: Atualiza uma pessoa existente
+      tags: [Pessoa]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pessoa'
+      responses:
+        '204':
+          description: No Content
+    delete:
+      summary: Remove uma pessoa pelo ID
+      tags: [Pessoa]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No Content
+components:
+  schemas:
+    Pessoa:
+      type: object
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+        cpf:
+          type: string
+        email:
+          type: string
+      required:
+        - nome
+        - cpf
+        - email
